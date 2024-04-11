@@ -4,7 +4,8 @@
   "description": "backend for blog app with rest api",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app",
+    "dev": "nodemon app"
   },
   "keywords": [
     "backend",
@@ -22,5 +23,8 @@
     "express": "^4.19.2",
     "mongoose": "^8.3.1",
     "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
   }
 }
