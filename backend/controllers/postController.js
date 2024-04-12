@@ -1,6 +1,7 @@
 const Post = require('../models/post');
 const Comment = require('../models/comment');
 const User = require('../models/user');
+const {body, validationResult, param} = require('express-validator');
 
 exports.getAllPosts = async (req, res) => {
     try {
@@ -64,3 +65,74 @@ exports.getAllComments = async (req, res) => {
         res.status(400).json(response);
     }
 }
+
+exports.likePost = async (req, res) => {
+    const postId = req.params.id;
+
+    try {
+        const post = await Post.findOneAndUpdate({_id: postId}, {$inc: {likes: 1}}).exec();
+        const response = {
+            success: true,
+        };
+
+        res.status(200).json(response);
+    } catch (error) {
+        const response = {
+            success: false,
+            message: "no such post"
+        };
+        console.log(error.message);
+        res.status(400).json(response);
+    }
+}
+
+exports.removePostLike = async (req, res) => {
+    const postId = req.params.id;
+
+    try {
+        const post = await Post.findOneAndUpdate({_id: postId}, {$inc: {likes: -1}}).exec();
+        const response = {
+            success: true,
+        };
+
+        res.status(200).json(response);
+    } catch (error) {
+        const response = {
+            success: false,
+            message: "no such post"
+        };
+        console.log(error.message);
+        res.status(400).json(response);
+    }
+}
+
+exports.createComment = [
+    body('username').trim().notEmpty(),
+    body('message').trim().notEmpty(),
+    param('id').trim().notEmpty(),
+
+    async (req, res) => {
+        const errors = validationResult(req);
+
+        if(!errors.isEmpty()) {
+            const response ={
+                success: false,
+                errors: errors.array(),
+            };
+
+            res.status(400).json(response);
+            return;
+        }
+
+        const postId = req.params.id;
+        const comment = new Comment({post: postId, username: req.body.username, message: req.body.message});
+        await comment.save();
+
+        const response = {
+            success: true,
+            comment: comment
+        };
+
+        res.status(200).json(response);
+    }
+];
