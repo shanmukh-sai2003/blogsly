@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
+import { DateTime } from "luxon";
 
 function BlogCard(props) {
     const {blogId, title, content, date} = props;
     return (
-        <div className="p-2 text-center border ml-4">
+        <div className="p-2 text-center border ml-4 shadow-md">
             <h3 className="text-2xl font-bold">{title}</h3>
             <p>{content.slice(0, 200)}...</p>
-            <p>{date}</p>
-            <Link to={`/blog/${blogId}`} className="p-4 border rounded-lg mt-4">continue reading</Link>
+            <p>{DateTime.fromJSDate(new Date(date)).toLocaleString(DateTime.DATE_MED)}</p>
+            <button className="p-4 mt-4 rounded-lg border shadow-sm"><Link to={`/blog/${blogId}`}>continue reading</Link></button>
         </div>
     );
 }

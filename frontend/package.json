@@ -15,9 +15,11 @@
   "author": "korada shanmukh sai",
   "license": "ISC",
   "dependencies": {
+    "luxon": "^3.4.4",
     "parcel": "^2.12.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^5.1.0",
     "react-router-dom": "^6.22.3"
   },
   "devDependencies": {
