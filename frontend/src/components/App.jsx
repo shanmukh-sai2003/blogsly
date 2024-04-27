@@ -1,11 +1,24 @@
-
+import Header from "./Header";
+import MainPage from "./MainPage";
+import BlogFullPage from "./BlogFullPage";
+import {Outlet, Route, createBrowserRouter, createRoutesFromElements} from "react-router-dom";
 
 function App() {
     return (
         <div>
-            <h1 className="text-6xl">Hello world</h1>
+            <Header />
+            <Outlet />
         </div>
     );
 }
 
-export default App;
+const router = createBrowserRouter(
+    createRoutesFromElements(
+        <Route path="/" element={ <App /> }>
+            <Route path="" element={ <MainPage />} />
+            <Route path="blog/:blogId" element={ <BlogFullPage />} />
+        </Route>
+    )
+);
+
+export default router;
