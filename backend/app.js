@@ -20,10 +20,6 @@ makeConnection();
 // routes setup
 app.use('/api', postRouter);
 
-app.get('/', (req, res) => {
-    res.send("hello world");
-});
-
 // server listening
 app.listen(process.env.PORT, () => {
     console.log(`server is up and listening at port ${process.env.PORT}`);
