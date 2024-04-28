@@ -3,6 +3,7 @@ const path = require('path');
 const logger = require('morgan');
 const makeConnection = require('./connection');
 const postRouter = require('./routes/post.router');
+const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
@@ -11,6 +12,7 @@ const app = express();
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.use(cors())
 
 // database connection
 makeConnection();
