@@ -7,6 +7,7 @@ function Header() {
             <ul className="flex gap-4 text-xl items-center">
                 <li><Link to={`/login`}>login</Link></li>
                 <li><Link to={`/logout`}>logout</Link></li>
+                <li><Link to={`/admin`}>admin</Link></li>
             </ul>
         </header>
     );

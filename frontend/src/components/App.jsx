@@ -1,9 +1,10 @@
 import Header from "./Header";
 import MainPage from "./MainPage";
 import BlogFullPage from "./BlogFullPage";
-import {Outlet, Route, Routes, createBrowserRouter, createRoutesFromElements} from "react-router-dom";
+import {Outlet, createBrowserRouter} from "react-router-dom";
 import Login from "./admin/Login";
 import AdminMainPage from "./admin/AdminMainPage";
+import UserProvider from "../context/userProvider";
 
 function App() {
     return (
@@ -17,7 +18,7 @@ function App() {
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <App />,
+        element: <UserProvider><App /></UserProvider>,
         children: [
             {
                 path:"",

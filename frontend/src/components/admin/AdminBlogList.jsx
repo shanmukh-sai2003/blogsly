@@ -5,7 +5,9 @@ import AdminBlogCard from "./AdminBlogCard";
 function AdminBlogList() {
     const [blogList, setBlogList] = useState();
 
-    useEffect(getAllBlogs,[]);
+    useEffect(() => {
+        getAllBlogs()
+    },[]);
 
     async function getAllBlogs() {
         try {

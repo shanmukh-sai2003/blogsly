@@ -1,13 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { API_URL } from "../../utils/constants";
 import { useNavigate } from "react-router-dom";
 import ErrorMessage from "../ErrorMessage";
+import useAuth from "../../utils/useAuth";
 
 function Login() {
     const [uname, setUname] = useState("");
     const [pwd, setPwd] = useState("");
     const [error, setError] = useState("");
+    const { setUser } = useAuth();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        setError("");
+    }, [uname, pwd]);
 
     function onInputChange(e, setState) {
         setState(e.target.value);
@@ -31,7 +37,11 @@ function Login() {
             if(!data.success) {
                 setError(data.message);
             } else {
-                setError("");
+                const username = data.username;
+                const name = data.name;
+                const userId = data.userId;
+                const accessToken = data.accessToken;
+                setUser({ username, userId, name, accessToken });
                 setUname("");
                 setPwd("");
                 navigate(-1);
