@@ -3,6 +3,7 @@ import MainPage from "./MainPage";
 import BlogFullPage from "./BlogFullPage";
 import {Outlet, Route, Routes, createBrowserRouter, createRoutesFromElements} from "react-router-dom";
 import Login from "./admin/Login";
+import AdminMainPage from "./admin/AdminMainPage";
 
 function App() {
     return (
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
             {
                 path: "login",
                 element: <Login />
+            },
+            {
+                path: "admin",
+                element: <AdminMainPage />
             }
         ]
     }

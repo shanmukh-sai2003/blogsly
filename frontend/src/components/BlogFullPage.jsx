@@ -40,7 +40,7 @@ function BlogFullPage() {
                 <h1 className="text-4xl font-bold">{blog.title}</h1>
                 <div className="flex m-4 justify-between  mt-10 text-gray-500">
                     <p>{blog.user.name}</p>
-                    <p>{DateTime.fromJSDate(new Date(blog.date)).toLocaleString(DateTime.DATE_MED)}</p>
+                    <p>{DateTime.fromJSDate(new Date(blog.date)).toLocaleString(DateTime.DATE_FULL)}</p>
                 </div>
             </div>
             <p className="text-justify m-4 w-[50vw]">{blog.content}</p>
