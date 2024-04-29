@@ -4,7 +4,7 @@ import { DateTime } from "luxon";
 function BlogCard(props) {
     const {blogId, title, content, date} = props;
     return (
-        <div className="p-2 text-center border ml-4 shadow-md">
+        <div className="p-2 text-center border ml-4 shadow-md w-[25vw] mb-4 rounded-lg">
             <h3 className="text-2xl font-bold">{title}</h3>
             <p>{content.slice(0, 200)}...</p>
             <p>{DateTime.fromJSDate(new Date(date)).toLocaleString(DateTime.DATE_MED)}</p>

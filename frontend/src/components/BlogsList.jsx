@@ -23,7 +23,7 @@ function BlogsList() {
     }
 
     return (
-        <div className="ml-8 mt-4 mr-8 flex">
+        <div className="ml-8 mt-4 mr-8 flex flex-wrap justify-center">
             {blogsList.map(blog => {
                 return (
                     <BlogCard 

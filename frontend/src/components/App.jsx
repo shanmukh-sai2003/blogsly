@@ -1,7 +1,8 @@
 import Header from "./Header";
 import MainPage from "./MainPage";
 import BlogFullPage from "./BlogFullPage";
-import {Outlet, Route, createBrowserRouter, createRoutesFromElements} from "react-router-dom";
+import {Outlet, Route, Routes, createBrowserRouter, createRoutesFromElements} from "react-router-dom";
+import Login from "./admin/Login";
 
 function App() {
     return (
@@ -12,13 +13,25 @@ function App() {
     );
 }
 
-const router = createBrowserRouter(
-    createRoutesFromElements(
-        <Route path="/" element={ <App /> }>
-            <Route path="" element={ <MainPage />} />
-            <Route path="blog/:blogId" element={ <BlogFullPage />} />
-        </Route>
-    )
-);
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <App />,
+        children: [
+            {
+                path:"",
+                element: <MainPage />
+            },
+            {
+                path: "blog/:blogId",
+                element: <BlogFullPage />
+            },
+            {
+                path: "login",
+                element: <Login />
+            }
+        ]
+    }
+]);
 
 export default router;
