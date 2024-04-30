@@ -2,12 +2,11 @@ import { DateTime } from "luxon";
 import { FaHeart } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { publish, unpublish } from "../../utils/services/publishPost";
-import deletePost from "../../utils/services/deletePost"
 import ErrorMessage from "../ErrorMessage";
 import { useState } from "react";
 
 function AdminBlogCard(props) {
-    const {blogId, likes, title, content, date, published} = props;
+    const {blogId, likes, title, content, date, published, deletePost} = props;
     const [isPublished, setIsPublished] = useState(published);
     const [error, setError] = useState("");
     const navigate = useNavigate();
@@ -30,17 +29,6 @@ function AdminBlogCard(props) {
         }
     }
 
-    async function handleDelete() {
-        try {
-            const data = await deletePost(blogId);
-            if(!data?.success) {
-                setError(data.message);
-            } 
-        } catch (error) {
-            console.log(error.message);
-        }
-    }
-
     return (
         <div className="w-[80vw] my-4 border py-6  px-8 rounded-md shadow-md">
             {error.length !== 0 && <ErrorMessage message={error}/>}
@@ -55,7 +43,7 @@ function AdminBlogCard(props) {
                     <Link to={`/blog/${blogId}`}><button className="border rounded-lg shadow-sm p-4 text-xl bg-blue-400">continue reading</button></Link>
                     <button className="border rounded-lg shadow-sm p-4 text-xl bg-yellow-400" onClick={handlePublish}>{ isPublished ? "unpublish" : "publish" }</button>
                     <button className="border rounded-lg shadow-sm p-4 text-xl bg-green-400">edit</button>
-                    <button className="border rounded-lg shadow-sm p-4 text-xl bg-red-400" onClick={handleDelete}>delete</button>
+                    <button className="border rounded-lg shadow-sm p-4 text-xl bg-red-400" onClick={ () => { deletePost(blogId) }}>delete</button>
                 </div>
             </div>            
         </div>
