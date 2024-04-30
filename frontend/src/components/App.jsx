@@ -5,6 +5,7 @@ import {Outlet, createBrowserRouter} from "react-router-dom";
 import Login from "./admin/Login";
 import AdminMainPage from "./admin/AdminMainPage";
 import UserProvider from "../context/userProvider";
+import RouterProtector from "./RouteProtector";
 
 function App() {
     return (
@@ -34,7 +35,13 @@ const router = createBrowserRouter([
             },
             {
                 path: "admin",
-                element: <AdminMainPage />
+                element: <RouterProtector />,
+                children: [
+                    {
+                        path: "",
+                        element: <AdminMainPage />
+                    }
+                ]
             }
         ]
     }

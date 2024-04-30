@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { API_URL } from "../../utils/constants";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ErrorMessage from "../ErrorMessage";
 import useAuth from "../../utils/useAuth";
 
@@ -10,6 +10,8 @@ function Login() {
     const [error, setError] = useState("");
     const { setUser } = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/admin"
 
     useEffect(() => {
         setError("");
@@ -44,7 +46,7 @@ function Login() {
                 setUser({ username, userId, name, accessToken });
                 setUname("");
                 setPwd("");
-                navigate(-1);
+                navigate(from, { replace: true });
             }
         } catch (error) {
             console.log(error);
