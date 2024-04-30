@@ -1,6 +1,24 @@
 const {body, validationResult, param} = require('express-validator');
 const Post = require('../models/post');
 
+exports.getAllPosts = async (req, res) => {
+    try {
+        const blogsList = await Post.find().exec();
+        const response = {
+            success: true,
+            data: blogsList,
+        }
+        res.status(200).json(response);
+    } catch (error) {
+        const response = {
+            success: false,
+            message: "unable to fetch data from database"
+        }
+        console.log(error.message);
+        res.status(500).json(response);
+    }
+}
+
 
 exports.createPost = [
     body('title').trim().notEmpty(),

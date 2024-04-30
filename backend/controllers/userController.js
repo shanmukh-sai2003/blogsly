@@ -48,7 +48,7 @@ exports.userLogin = [
         } catch (error) {
             const response = {
                 success: false,
-                message: error.message()
+                message: error.message
             };
             res.status(400).json(response);
         }

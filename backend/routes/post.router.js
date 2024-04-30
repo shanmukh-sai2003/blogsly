@@ -7,6 +7,8 @@ const router = express.Router();
 
 router.get('/posts', postController.getAllPosts);
 
+router.get('/posts/all', authController.verifyAccessToken, adminController.getAllPosts);
+
 router.post('/posts', authController.verifyAccessToken, adminController.createPost);
 
 router.get('/posts/:id', postController.getPost);
