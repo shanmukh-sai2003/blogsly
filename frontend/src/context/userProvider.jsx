@@ -6,7 +6,11 @@ function UserProvider({ children }) {
 
     useEffect(() => {
         const userData = localStorage.getItem('USER');
-        setUser(JSON.parse(userData));
+        if(!userData) {
+            setUser({});
+        } else {
+            setUser(JSON.parse(userData));
+        }
     }, []);
 
     useEffect(() => {

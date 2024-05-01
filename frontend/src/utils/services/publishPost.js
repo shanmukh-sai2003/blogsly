@@ -1,9 +1,9 @@
 import { API_URL } from '../constants';
 import useAuth from '../useAuth';
 
-const auth = JSON.parse(localStorage.getItem('USER'));
+// const auth = JSON.parse(localStorage.getItem('USER'));
 
-export const publish = async (postId) => {
+export const publish = async (postId, auth) => {
     try {
         const response = await fetch(API_URL + `/posts/${postId}/publish`, {
             method: 'POST', 
@@ -19,7 +19,7 @@ export const publish = async (postId) => {
     }
 }
 
-export const unpublish = async (postId) => {
+export const unpublish = async (postId, auth) => {
     try {
         const response = await fetch(API_URL + `/posts/${postId}/unpublish`, {
             method: 'POST', 

@@ -6,6 +6,8 @@ import Login from "./admin/Login";
 import AdminMainPage from "./admin/AdminMainPage";
 import UserProvider from "../context/userProvider";
 import RouterProtector from "./RouteProtector";
+import CreatePostPage from "./admin/CreatePostPage";
+import EditPostPage from "./admin/EditPostPage";
 
 function App() {
     return (
@@ -34,12 +36,20 @@ const router = createBrowserRouter([
                 element: <Login />
             },
             {
-                path: "admin",
+                path: "admin/",
                 element: <RouterProtector />,
                 children: [
                     {
                         path: "",
                         element: <AdminMainPage />
+                    },
+                    {
+                        path: "create",
+                        element: <CreatePostPage />
+                    },
+                    {
+                        path: "blog/:blogId/edit",
+                        element: <EditPostPage />
                     }
                 ]
             }

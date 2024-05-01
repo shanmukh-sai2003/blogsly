@@ -43,7 +43,7 @@ function BlogFullPage() {
                     <p>{DateTime.fromJSDate(new Date(blog.date)).toLocaleString(DateTime.DATE_FULL)}</p>
                 </div>
             </div>
-            <p className="text-justify m-4 w-[50vw]">{blog.content}</p>
+            <div className="text-justify m-4 w-[50vw]" dangerouslySetInnerHTML={{__html: blog.content}}></div>
             <LikeForm 
                 postId={blogId}
                 likes={blog.likes}

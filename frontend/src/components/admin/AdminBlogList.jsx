@@ -10,7 +10,6 @@ function AdminBlogList() {
     const { user } = useAuth();
     const [errorMessage, setErrorMessage] = useState("");
     const [isPostDeleted, setIsPostDeleted] = useState(false);
-    console.log(user?.accessToken);
 
     useEffect(() => {
         getAllBlogs()
