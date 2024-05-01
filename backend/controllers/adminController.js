@@ -3,7 +3,7 @@ const Post = require('../models/post');
 
 exports.getAllPosts = async (req, res) => {
     try {
-        const blogsList = await Post.find().exec();
+        const blogsList = await Post.find({user: req.user.userId}).exec();
         const response = {
             success: true,
             data: blogsList,
