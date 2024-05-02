@@ -1,13 +1,14 @@
 import { useState } from "react";
 import {CiHeart} from 'react-icons/ci';
 import {FaHeart} from 'react-icons/fa';
+import { API_URL } from '../utils/constants';
 
 function LikeForm(props) {
     const {postId, likes} = props;
     const [likedPost, setLikedPost] = useState(false);
     async function handleLike() {
         if(!likedPost) {
-            const response = await fetch(`http://localhost:3000/api/posts/${postId}/like`, {
+            const response = await fetch(`${API_URL}/posts/${postId}/like`, {
                 method: "POST", 
                 headers: {
                     "Content-Type": "application/json"
@@ -15,7 +16,7 @@ function LikeForm(props) {
             });
             const data = await response.json();
         } else {
-            const response = await fetch(`http://localhost:3000/api/posts/${postId}/removeLike`, {
+            const response = await fetch(`${API_URL}/posts/${postId}/removeLike`, {
                 method: "POST", 
                 headers: {
                     "Content-Type": "application/json"

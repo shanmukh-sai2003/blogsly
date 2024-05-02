@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import BlogCard from "./BlogCard";
+import { API_URL } from "../utils/constants";
 
 function BlogsList() {
     const [blogsList, setBlogsList] = useState();
@@ -9,7 +10,7 @@ function BlogsList() {
 
     async function fetchBlogs() {
         try {
-            const blogsPromise = await fetch('http://localhost:3000/api/posts');
+            const blogsPromise = await fetch(API_URL + '/posts');
             const blogs = await blogsPromise.json();
             console.log(blogs);
             setBlogsList(blogs.data);

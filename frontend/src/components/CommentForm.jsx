@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { redirect } from "react-router-dom";
+import { API_URL } from "../utils/constants";
 
 function CommentForm(props) {
     const {postId, addComment} = props;
@@ -14,7 +14,7 @@ function CommentForm(props) {
         };
         console.log(body);
         try {
-            const response = await fetch(`http://localhost:3000/api/posts/${postId}/comments`, {
+            const response = await fetch(`${API_URL}/posts/${postId}/comments`, {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json"

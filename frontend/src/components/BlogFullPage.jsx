@@ -4,6 +4,7 @@ import Comment from "./Comment";
 import CommentForm from "./CommentForm";
 import LikeForm from "./LikeFom";
 import {DateTime} from 'luxon';
+import { API_URL } from "../utils/constants";
 
 function BlogFullPage() {
     const {blogId} = useParams();
@@ -17,11 +18,11 @@ function BlogFullPage() {
 
     async function fetchBlog() {
         try {
-            const response = await fetch(`http://localhost:3000/api/posts/${blogId}`);
+            const response = await fetch(`${API_URL}/posts/${blogId}`);
             const data = await response.json();
             console.log(data);
             setBlog(data.post);  
-            const responseComment = await fetch(`http://localhost:3000/api/posts/${blogId}/comments`);
+            const responseComment = await fetch(`${API_URL}/posts/${blogId}/comments`);
             const dataComment = await responseComment.json();
             console.log(dataComment);  
             setComments(dataComment.data);    
